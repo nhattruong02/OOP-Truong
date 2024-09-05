@@ -1,46 +1,35 @@
-﻿using System;
-
-public class Product
+﻿using OOP.muck_entity;
+using System;
+namespace OOP.demo
 {
-    private int _id;
-    private string _name;
-    private int _categoryId;
+    public class Product : Entity
+    {
 
-    public Product(int id, string name, int categoryID)
-    {
-        this._id = id;
-        this._name = name;
-        this._categoryId = categoryID;
-    }
-    public int getId()
-    {
-        return this._id;
-    }
-    public void setId(int id)
-    {
-        this._id = id;
-    }
-    public string getName()
-    {
-        return this._name;
-    }
-    public void setName(string name)
-    {
-        this._name = name;
-    }
-    public int getCategoryID()
-    {
-        return this._categoryId;
-    }
-    public void setCategoryID(int categoryID)
-    {
-        this._categoryId = categoryID;
-    }
+        private int _categoryId;
 
-    public void printProduct(Product product)
-    {
-        Console.WriteLine("Id:" + product._id + "\t" + "Name:" + product._name + "\t" + "CategoryId:" + product._categoryId);
-    }
+        public Product(int id, string name, int _categoryID) : base(id, name)
+        {
+            this.id = id;
+            this.name = name;
+            this._categoryId = _categoryID;
+        }
+        public int getCategoryID()
+        {
+            return this._categoryId;
+        }
 
 
+        public void setCategoryID(int categoryID)
+        {
+            this._categoryId = categoryID;
+        }
+        public override void print()
+        {
+            Console.WriteLine("id:" + this.id + "\tname:" + this.name + "\tcategory:" + this._categoryId);
+        }
+        public override string ToString()
+        {
+            return "Product\t" + "id:" + this.id + "\tName:" + this.name + "\tcategory:" + this._categoryId;
+        }
+    }
 }

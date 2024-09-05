@@ -1,26 +1,20 @@
-﻿using System;
-public class Accessotion
+﻿using OOP.muck_entity;
+using System;
+namespace OOP.demo
 {
-    private int _id;
-    private string _name;
-    public int getId()
+    public class Accessotion : Entity
     {
-        return this._id;
-    }
-    public void setId(int id)
-    {
-        this._id = id;
-    }
-    public string getName()
-    {
-        return this._name;
-    }
-    public void setName(string name)
-    {
-        this._name = name;
-    }
-    public Accessotion(int id, string name) {  
-        this._id = id;
-        this._name = name;
+        public Accessotion(int id, string name) : base(id, name)
+        {
+        }
+
+        public override void print()
+        {
+            Console.WriteLine("id:" + id + "name:" + name);
+        }
+        public override string ToString()
+        {
+            return "Accessotion\t" + "id:" + this.id + "\tName:" + this.name;
+        }
     }
 }

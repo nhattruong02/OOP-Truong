@@ -1,114 +1,68 @@
 ﻿using System;
 using System.Xml.Linq;
+using System.Collections.Generic;
+using OOP.demo;
+using OOP.muck_entity;
+using OOP.dao;
 
-public class Database
+namespace OOP.demo
 {
-    List<Product> productTable;
-    List<Category> categoryTable;
-    List<Accessotion> accessionsTable;
-    public Database(List<Product> products, List<Category> category, List<Accessotion> accessions)
+    public class Database : IFunction<Entity>
     {
-        this.productTable = products;
-        this.categoryTable = category;
-        this.accessionsTable = accessions;
-    }
-    public void insertTable(string name, object row)
-    {
-        switch (name)
+        Dictionary<string, List<Entity>> dic = new Dictionary<string, List<Entity>>()
         {
-            case "product":
-                productTable.Add((Product)row);
-                break;
-            case "category":
-                categoryTable.Add((Category)row);
-                break;
-            case "accession":
-                accessionsTable.Add((Accessotion)row);
-                break;
-        }
-    }
-    public List<object> selectTable(string name)
-    {
-        switch (name)
+            { COMMON.Product, new List<Entity>()},
+            { COMMON.Category, new List<Entity>()},
+            { COMMON.Accesstion, new List<Entity>()}
+        };
+
+        public void deleteTable(string name, Entity row)
         {
-            case "product":
-                return productTable.Cast<object>().ToList();
-            case "category":
-                return categoryTable.Cast<object>().ToList();
-            case "accession":
-                return accessionsTable.Cast<object>().ToList();
-            default:
-                throw new ArgumentException($"Table {name} does not exist.");
+            if (dic.ContainsKey(name))
+            {
+                dic[name].Remove(row);
+            }
         }
 
-    }
-    public void deleteTable(string name, object row)
-    {
-        switch (name)
+
+        public void insertTable(string name, Entity row)
         {
-            case "product":
-                productTable.Remove((Product)row);
-                break;
-            case "category":
-                categoryTable.Remove((Category)row);
-                break;
-            case "accession":
-                accessionsTable.Remove((Accessotion)row);
-                break;
+            if (dic.ContainsKey(name))
+            {
+                dic[name].Add(row);
+            }
+        }
+
+        public List<Entity> selectTable(string name)
+        {
+            return dic[name];
+        }
+
+        public void updateTable(string name, Entity row)
+        {
+            var o = dic[name].FirstOrDefault(o => o.id == row.id);
+            if (o != null)
+            {
+                o.name = row.name;
+                o.id = row.id;
+            }
+        }
+
+        public void truncateTable(string name)
+        {
+
+            dic[name].Clear();
+        }
+
+        public void updateTableById(int id, string name, Entity row)
+        {
+            var o = dic[name].FirstOrDefault(o => o.id == id);
+            if (o != null)
+            {
+                o.id = row.id;
+                o.name = row.name;
+            }
         }
     }
-    public void updateTable(string name, object row)
-    {
-        switch (name)
-        {
-            case "product":
-                var product = (Product)row;
-                var newProduct = productTable.FirstOrDefault(p => p.getId() == product.getId());
-                if (newProduct != null)
-                {
-                    newProduct.setName(product.getName());
-                    newProduct.setId(product.getId());
-                    newProduct.setCategoryID(product.getCategoryID());
-                }
-                break;
-            case "category":
-                var category = (Category)row;
-                var newCategory = categoryTable.FirstOrDefault(p => p.getId() == category.getId());
-                if (newCategory != null)
-                {
-                    newCategory.setName(category.getName());
-                    newCategory.setId(category.getId());
-
-                }
-                break;
-            case "accession":
-                var accession = (Accessotion)row;
-                var newaccession = accessionsTable.FirstOrDefault(p => p.getId() == accession.getId());
-                if (newaccession != null)
-                {
-                    newaccession.setName(accession.getName());
-                    newaccession.setId(accession.getId());
-
-                }
-                break;
-        }
-    }
-
-    public void truncateTable(string name)
-    {
-        switch (name)
-        {
-            case "product":
-                productTable.Clear();
-                break;
-            case "category":
-                productTable.Clear();
-                break;
-            case "accession":
-                productTable.Clear();
-                break;
-        }
-    }
-
 }
 
