@@ -17,9 +17,11 @@ namespace OOP.dao
         };
         public void deleteTable(string name, Product row)
         {
-            if (dic.ContainsKey(name))
+            var o = dic[name].FindAll(o => o.id == row.id);
+            for (int i = 0; i < dic[name].Count; i++)
             {
-                dic[name].Remove(row);
+                if (dic[name][i].id == row.id)
+                    dic[name].Remove(dic[name][i]);
             }
         }
 

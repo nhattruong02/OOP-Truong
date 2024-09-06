@@ -1,4 +1,4 @@
-﻿using OOP.muck_entity;
+﻿/*using OOP.muck_entity;
 using System;
 
 namespace OOP.demo
@@ -12,14 +12,17 @@ namespace OOP.demo
 
 
             initDatabase();
-            entities = database.selectTable("product");
-            foreach (Entity entity in entities)
-            {
-                Console.WriteLine(entity);
-            }
+            print();
+            
+            Console.WriteLine("Deleted");
+            Entity product = new Product(5, "product5", 5);
+            database.deleteTable(COMMON.Product,product);
+            print();
+            Console.WriteLine("Updated");
+            updateTableTest();
+            print();
+            database.truncateTable("product");
 
-/*            database.truncateTable("product");
-            entities = database.selectTable("product");
 
             if (entities.Count() <= 0)
             {
@@ -34,14 +37,14 @@ namespace OOP.demo
                 }
             }
 
+        }
+        private static void print()
+        {
             entities = database.selectTable("product");
-            Entity e = new Product(1, "product100", 2);
-
-            database.updateTable("product", e);*/
-
-            updateTableTest();
-
-
+            foreach (Entity entity in entities)
+            {
+                Console.WriteLine(entity);
+            }
         }
         private static void initDatabase()
         {
@@ -54,15 +57,11 @@ namespace OOP.demo
 
 
         private static void updateTableTest()
-        {
-            Console.WriteLine("Updated");
+        { 
             entities = database.selectTable("product");
             Entity e = new Product(1, "product11", 2);
             database.updateTable("product", e);
-            foreach (Entity entity in entities)
-            {
-                Console.WriteLine(entity);
-            }
         }
     }
 }
+*/

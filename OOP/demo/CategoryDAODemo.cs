@@ -10,63 +10,46 @@ namespace OOP.demo
 {
     public class CategoryDAODemo
     {
-        private static CategoryDAO category = new CategoryDAO();
+
+        private static CategoryDAO categorytDAO = new CategoryDAO();
         public static List<Category> categories;
         public static void Main(string[] args)
         {
-
             initDatabase();
-            categories = category.selectTable("category");
+            print();
+            Console.WriteLine("Deleted");
+            Category category = new Category(5, "category5");
+            categorytDAO.deleteTable(COMMON.Category, category);
+            print();
+            Console.WriteLine("Updated");
+            updateTableTest();
+            print();
+
+
+        }
+        private static void print()
+        {
+            categories = categorytDAO.selectTable("category");
             foreach (Category category in categories)
             {
                 Console.WriteLine(category);
             }
-
-            *//*            database.truncateTable("product");*/
-            /*            entities = database.selectTable("product");
-            */
-            /*            if (entities.Count() <= 0)
-                        {
-                            Console.WriteLine("null");
-
-                        }
-                        else
-                        {
-                            foreach (Entity entity in entities)
-                            {
-                                Console.WriteLine(entity);
-                            }
-                        }*/
-
-            /*            entities = database.selectTable("product");
-                        Entity e = new Product(1, "product100", 2);
-
-                        database.updateTable("product", e);*/
-
-          /*  updateTableTest();*//*
-
-
         }
         private static void initDatabase()
         {
             for (int i = 1; i < 10; i++)
             {
-                Category category1 = new Category(i, COMMON.Category + i);
-                category.insertTable(COMMON.Category, category1);
+                Category category = new Category(i, "category" + i);
+                categorytDAO.insertTable("category", category);
             }
         }
 
 
         private static void updateTableTest()
         {
-            Console.WriteLine("Updated");
-            categories = category.selectTable(COMMON.Category);
-            Category e = new Category(1, "category11");
-            category.updateTable(COMMON.Category, e);
-            foreach (Entity entity in categories)
-            {
-                Console.WriteLine(entity);
-            }
+            categories = categorytDAO.selectTable("category");
+            Category c = new Category(1, "category11");
+            categorytDAO.updateTable("category", c);
         }
     }
 }

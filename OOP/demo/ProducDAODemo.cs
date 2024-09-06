@@ -1,4 +1,4 @@
-﻿/*using OOP.dao;
+﻿using OOP.dao;
 using OOP.muck_entity;
 using System;
 using System.Collections.Generic;
@@ -11,65 +11,48 @@ namespace OOP.demo
     public class ProducDAODemo
     {
 
-        ProductDAO ProductDAO = new ProductDAO();
-        public static List<Product> products;
+        private static ProductDAO productDAO = new ProductDAO();
+        public static List<Product> entities;
         public static void Main(string[] args)
         {
 
 
             initDatabase();
-            products = ProductDAO.selectTable("product");
-            foreach (Entity entity in products)
+            print();
+
+            Console.WriteLine("Deleted");
+            Product product = new Product(5, "product5", 5);
+            productDAO.deleteTable(COMMON.Product, product);
+            print();
+            Console.WriteLine("Updated");
+            updateTableTest();
+            print();
+
+
+        }
+        private static void print()
+        {
+            entities = productDAO.selectTable("product");
+            foreach (Product entity in entities)
             {
                 Console.WriteLine(entity);
             }
-
-            database.truncateTable("product");
-                  entities = database.selectTable("product");
-
-            if (entities.Count() <= 0)
-            {
-                Console.WriteLine("null");
-
-            }
-            else
-            {
-                foreach (Entity entity in entities)
-                {
-                    Console.WriteLine(entity);
-                }
-            }
-
-            entities = database.selectTable("product");
-            Entity e = new Product(1, "product100", 2);
-
-            database.updateTable("product", e); *//*
-
-            updateTableTest();
-
-
         }
         private static void initDatabase()
         {
             for (int i = 1; i < 10; i++)
             {
-                Entity product = new Product(i, "product" + i, i);
-                database.insertTable("product", product);
+                Product product = new Product(i, "product" + i, i);
+                productDAO.insertTable("product", product);
             }
         }
 
 
         private static void updateTableTest()
         {
-            Console.WriteLine("Updated");
-            entities = database.selectTable("product");
-            Entity e = new Product(1, "product11", 2);
-            database.updateTable("product", e);
-            foreach (Entity entity in entities)
-            {
-                Console.WriteLine(entity);
-            }
+            entities = productDAO.selectTable("product");
+            Product p = new Product(1, "product11", 2);
+            productDAO.updateTable("product", p);
         }
     }
 }
-*/
