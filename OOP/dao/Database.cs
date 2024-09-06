@@ -7,16 +7,17 @@ using OOP.dao;
 
 namespace OOP.demo
 {
-    public class Database : IFunction<Entity>
+    public class Database : Singleton<Database>
     {
-        Dictionary<string, List<Entity>> dic = new Dictionary<string, List<Entity>>()
+        public Dictionary<string, List<BaseRow>> dic = new Dictionary<string, List<BaseRow>>()
         {
-            { COMMON.Product, new List<Entity>()},
-            { COMMON.Category, new List<Entity>()},
-            { COMMON.Accesstion, new List<Entity>()}
+            { Common.Product, new List<BaseRow>()},
+            { Common.Category, new List<BaseRow>()},
+            { Common.Accesstion, new List<BaseRow>()}
         };
 
-        public void deleteTable(string name, Entity row)
+
+        public void deleteTable(string name, BaseRow row)
         {
             var o = dic[name].FindAll(o => o.id == row.id);
             for (int i = 0; i < dic[name].Count; i++)
@@ -27,7 +28,7 @@ namespace OOP.demo
         }
 
 
-        public void insertTable(string name, Entity row)
+        public void insertTable(string name, BaseRow row)
         {
             if (dic.ContainsKey(name))
             {
@@ -35,12 +36,12 @@ namespace OOP.demo
             }
         }
 
-        public List<Entity> selectTable(string name)
+        public List<BaseRow> selectTable(string name)
         {
             return dic[name];
         }
 
-        public void updateTable(string name, Entity row)
+        public void updateTable(string name, BaseRow row)
         {
             var o = dic[name].FirstOrDefault(o => o.id == row.id);
             if (o != null)
@@ -56,7 +57,7 @@ namespace OOP.demo
             dic[name].Clear();
         }
 
-        public void updateTableById(int id, string name, Entity row)
+        public void updateTableById(int id, string name, BaseRow row)
         {
             var o = dic[name].FirstOrDefault(o => o.id == id);
             if (o != null)

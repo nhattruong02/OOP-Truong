@@ -2,7 +2,7 @@
 using System;
 namespace OOP.demo
 {
-    public class Product : Entity
+    public class Product : BaseRow
     {
 
         private int _categoryId;
@@ -23,7 +23,7 @@ namespace OOP.demo
         {
             this._categoryId = categoryID;
         }
-        public override void print()
+        protected override void print()
         {
             Console.WriteLine("id:" + this.id + "\tname:" + this.name + "\tcategory:" + this._categoryId);
         }

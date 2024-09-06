@@ -3,7 +3,7 @@ using System;
 
 namespace OOP.demo
 {
-    public class Category : Entity
+    public class Category : BaseRow
     {
         public Category(int id, string name) : base(id, name)
         {
@@ -11,7 +11,7 @@ namespace OOP.demo
             this.name = name;
         }
 
-        public override void print()
+        protected override void print()
         {
             Console.WriteLine("id:" + id + "name:" + name);
         }

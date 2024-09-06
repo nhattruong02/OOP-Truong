@@ -1,4 +1,4 @@
-﻿/*using OOP.dao;
+﻿using OOP.dao;
 using OOP.muck_entity;
 using System;
 using System.Collections.Generic;
@@ -11,15 +11,15 @@ namespace OOP.demo
     public class CategoryDAODemo
     {
 
-        private static CategoryDAO categorytDAO = new CategoryDAO();
-        public static List<Category> categories;
+        private static BaseDao categorytDAO = new CategoryDAO();
+        public static List<BaseRow> categories;
         public static void Main(string[] args)
         {
             initDatabase();
             print();
             Console.WriteLine("Deleted");
-            Category category = new Category(5, "category5");
-            categorytDAO.deleteTable(COMMON.Category, category);
+            Category category = new Category(5, Common.Category+"5");
+            categorytDAO.deleteTable(Common.Category, category);
             print();
             Console.WriteLine("Updated");
             updateTableTest();
@@ -29,7 +29,7 @@ namespace OOP.demo
         }
         private static void print()
         {
-            categories = categorytDAO.selectTable("category");
+            categories = categorytDAO.selectTable(Common.Category);
             foreach (Category category in categories)
             {
                 Console.WriteLine(category);
@@ -39,18 +39,17 @@ namespace OOP.demo
         {
             for (int i = 1; i < 10; i++)
             {
-                Category category = new Category(i, "category" + i);
-                categorytDAO.insertTable("category", category);
+                Category category = new Category(i, Common.Category + i);
+                categorytDAO.insertTable(Common.Category, category);
             }
         }
 
 
         private static void updateTableTest()
         {
-            categories = categorytDAO.selectTable("category");
-            Category c = new Category(1, "category11");
-            categorytDAO.updateTable("category", c);
+            categories = categorytDAO.selectTable(Common.Category);
+            Category c = new Category(1, Common.Category +"11");
+            categorytDAO.updateTable(Common.Category, c);
         }
     }
 }
-*/

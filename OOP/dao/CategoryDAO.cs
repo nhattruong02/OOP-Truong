@@ -5,53 +5,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace OOP.dao
 {
-    public class CategoryDAO : IFunction<Category>
+    public class CategoryDAO : BaseDao, IFunction<Category>
     {
-        Database database;
-        Dictionary<string, List<Category>> dic = new Dictionary<string, List<Category>>() {
-
-            { COMMON.Category, new List<Category>()},
-
-        };
-        public CategoryDAO() {
-            database = new Database();
+        public List<BaseRow> search(string name)
+        {
+            var o = dic[name].FindAll(o => o.name.Contains(name));
+            return o;
         }
 
-        public void deleteTable(string name, Category row)
+        public void searchByName(string name)
         {
-            var o = dic[name].FindAll(o => o.id == row.id);
-            for(int i  = 0; i < dic[name].Count; i++)
+            var o = dic[name].FirstOrDefault(o => o.name.Equals(name));
+            if(o != null)
             {
-                if (dic[name][i].id == row.id)
-                    dic[name].Remove(dic[name][i]);
-            }
-            
-        }
-
-
-        public void insertTable(string name, Category row)
-        {
-            database.insertTable(name, row);
-        }
-
-        public List<Category> selectTable(string name)
-        {
-            return dic[name];
-        }
-
-
-        public void updateTable(string name, Category row)
-        {
-            var o = dic[name].FirstOrDefault(o => o.id == row.id);
-            if (o != null)
-            {
-                o.name = row.name;
-                o.id = row.id;
+                Console.WriteLine(o.ToString());
             }
         }
-
     }
 }

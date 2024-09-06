@@ -2,13 +2,13 @@
 using System;
 namespace OOP.demo
 {
-    public class Accessotion : Entity
+    public class Accessotion : BaseRow
     {
         public Accessotion(int id, string name) : base(id, name)
         {
         }
 
-        public override void print()
+        protected override void print()
         {
             Console.WriteLine("id:" + id + "name:" + name);
         }

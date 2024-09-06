@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP.demo
 {
-    public class COMMON
+    public class Common
     {
         public static string Product = "product";
         public static string Category = "category";

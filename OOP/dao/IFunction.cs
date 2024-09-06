@@ -9,10 +9,8 @@ namespace OOP.dao
 {
     public interface IFunction<T>
     {
+        public void searchByName(string name );
+        public List<BaseRow> search(string name);
 
-        public void insertTable(string name, T row );
-        public void updateTable(string name, T row);
-        public void deleteTable(string name, T row); 
-        public List<T> selectTable(string name);
     }
 }

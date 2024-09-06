@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace OOP.muck_entity
 {
-    public abstract class Entity
+    public abstract class BaseRow
     {
         public int id { get; set; }
         public string name { get; set; }
-        public Entity(int id, string name)
+        protected BaseRow(int id, string name)
         {
             this.id = id;
             this.name = name;   
         }
 
-        public abstract void print();
+        protected abstract void print();
     }
 }

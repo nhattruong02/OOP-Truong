@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace OOP.dao
 {
-    public class ProductDAO : BaseDao, IFunction<Product>
+    public class AccessoryDAO : BaseDao, IFunction<Accessotion>
     {
         public List<BaseRow> search(string name)
         {
-            var o = dic[name].FindAll(o => o.name.Contains(name));
-            return o;
+           var o = dic[name].FindAll(o => o.name.Contains(name));
+           return o;
         }
 
         public void searchByName(string name)
