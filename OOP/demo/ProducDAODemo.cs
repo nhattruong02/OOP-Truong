@@ -10,26 +10,41 @@ namespace OOP.demo
 {
     public class ProducDAODemo
     {
-
         private static ProductDAO productDAO = new ProductDAO();
         public static List<BaseRow> entities;
         public static void Main(string[] args)
         {
-
-
             initDatabase();
             print();
-
             Console.WriteLine("Deleted");
-            Product product = new Product(5, Common.Product+"5", 5);
+            Product product = new Product(5, Common.Product + "5", 5);
             productDAO.deleteTable(Common.Product, product);
             print();
             Console.WriteLine("Updated");
             updateTableTest();
             print();
-
-
+            Console.WriteLine("Search By Name");
+            printSearchByName(productDAO.searchByName(Common.Product + "2"));
+            Console.WriteLine("Search");
+            printSearch(productDAO.search("1"));
         }
+
+        private static void printSearchByName(List<BaseRow> list)
+        {
+            foreach (BaseRow row in list)
+            {
+                Console.WriteLine(row.ToString());
+            }
+        }
+
+        private static void printSearch(List<BaseRow> list)
+        {
+            foreach (BaseRow row in list)
+            {
+                Console.WriteLine(row.ToString());
+            }
+        }
+
         private static void print()
         {
             entities = productDAO.selectTable(Common.Product);
@@ -38,6 +53,7 @@ namespace OOP.demo
                 Console.WriteLine(entity);
             }
         }
+
         private static void initDatabase()
         {
             for (int i = 1; i < 10; i++)
@@ -47,11 +63,10 @@ namespace OOP.demo
             }
         }
 
-
         private static void updateTableTest()
         {
             entities = productDAO.selectTable(Common.Product);
-            Product p = new Product(1, Common.Product+"11", 2);
+            Product p = new Product(1, Common.Product + "11", 2);
             productDAO.updateTable(Common.Product, p);
         }
     }

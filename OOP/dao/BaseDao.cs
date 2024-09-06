@@ -10,39 +10,59 @@ namespace OOP.dao
 {
     public abstract class BaseDao
     {
-        public Dictionary<string, List<BaseRow>> dic = new Dictionary<string, List<BaseRow>>()
-        {
-            { Common.Product, new List<BaseRow>()},
-            { Common.Category, new List<BaseRow>()},
-            { Common.Accesstion, new List<BaseRow>()}
-        };
+        /// <summary>
+        /// Add an object to dictionary
+        /// </summary>
+        /// <param name="name"> key of dictionary </param>
+        /// <param name="row"> an object </param>
+        /// <returns></returns>
+        
         public void insertTable(string name, BaseRow row) {
-            if (dic.ContainsKey(name))
+            if (Database.Instance().dic.ContainsKey(name))
             {
-                dic[name].Add(row);
+                Database.Instance().dic[name].Add(row);
             }
         }
+
+        /// <summary>
+        /// Update an object in dictionary
+        /// </summary>
+        /// <param name="name"> key of dictionary </param>
+        /// <param name="row"> an object </param>
+        /// <returns></returns>
         public void updateTable(string name, BaseRow row)
         {
-            var o = dic[name].FirstOrDefault(o => o.id == row.id);
+            var o = Database.Instance().dic[name].FirstOrDefault(o => o.id == row.id);
             if (o != null)
             {
                 o.name = row.name;
                 o.id = row.id;
             }
         }
+
+        /// <summary>
+        /// Delete an object in dictionary
+        /// </summary>
+        /// <param name="name"> key of dictionary </param>
+        /// <param name="row"> an object </param>
+        /// <returns></returns>
         public void deleteTable(string name, BaseRow row)
         {
-            var o = dic[name].FindAll(o => o.id == row.id);
-            for (int i = 0; i < dic[name].Count; i++)
+            var o = Database.Instance().dic[name].FindAll(o => o.id == row.id);
+            for (int i = 0; i < Database.Instance().dic[name].Count; i++)
             {
-                if (dic[name][i].id == row.id)
-                    dic[name].Remove(dic[name][i]);
+                if (Database.Instance().dic[name][i].id == row.id)
+                    Database.Instance().dic[name].Remove(Database.Instance().dic[name][i]);
             }
         }
+        /// <summary>
+        /// Get all object in dictionary
+        /// </summary>
+        /// <param name="name"> key of dictionary </param>
+        /// <returns></returns>
         public List<BaseRow> selectTable(string name)
         {
-            return dic[name];
+            return Database.Instance().dic[name];
         }
 
     }

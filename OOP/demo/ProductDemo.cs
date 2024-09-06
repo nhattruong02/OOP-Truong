@@ -10,10 +10,12 @@ class ProductDemo
         printProduct(product);
 
     }
+
     public static void createProductTest()
     {
         product = new Product(id: 1, name: "PD1", categoryID: 1);
     }
+
     public static void printProduct(Product product)
     {
         product.printProduct(product);

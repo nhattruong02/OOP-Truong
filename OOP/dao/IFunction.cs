@@ -9,8 +9,7 @@ namespace OOP.dao
 {
     public interface IFunction<T>
     {
-        public void searchByName(string name );
+        public List<BaseRow> searchByName(string name );
         public List<BaseRow> search(string name);
-
     }
 }

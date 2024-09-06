@@ -11,19 +11,35 @@ namespace OOP.dao
 {
     public class CategoryDAO : BaseDao, IFunction<Category>
     {
+        /// <summary>
+        /// Search table Category by name
+        /// </summary>
+        /// <param name="name"> key of dictionary </param>
+        /// <returns></returns>
         public List<BaseRow> search(string name)
         {
-            var o = dic[name].FindAll(o => o.name.Contains(name));
-            return o;
+            List<BaseRow> list = new List<BaseRow>();
+            foreach (var row in Database.Instance().dic[Common.Category])
+            {
+                if (row.name.Contains(name))
+                {
+                    list.Add(row);
+                }
+            }
+            return list;
         }
 
-        public void searchByName(string name)
+        public List<BaseRow> searchByName(string name)
         {
-            var o = dic[name].FirstOrDefault(o => o.name.Equals(name));
-            if(o != null)
+            List<BaseRow> list = new List<BaseRow>();
+            foreach (var row in Database.Instance().dic[Common.Category])
             {
-                Console.WriteLine(o.ToString());
+                if (row.name.Equals(name))
+                {
+                    list.Add(row);
+                }
             }
+            return list;
         }
     }
 }
