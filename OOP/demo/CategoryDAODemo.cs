@@ -25,15 +25,11 @@ namespace OOP.demo
             updateTableTest();
             print();
             Console.WriteLine("Search By Name");
-            printSearchByName(categorytDAO1.searchByName(Common.Category + "2"));
+            Console.WriteLine(categorytDAO1.searchByName(Common.Category + "2").ToString());
             Console.WriteLine("Search");
             printSearch(categorytDAO1.search("1"));
         }
 
-        private static void printSearchByName(BaseRow row)
-        {
-            Console.WriteLine(row.ToString());
-        }
 
         private static void printSearch(List<BaseRow> list)
         {

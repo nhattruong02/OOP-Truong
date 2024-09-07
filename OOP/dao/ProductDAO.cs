@@ -18,7 +18,7 @@ namespace OOP.dao
         public List<BaseRow> search(string name)
         {
             List<BaseRow> list = new List<BaseRow>();
-            foreach (var row in Database.Instance().dic[Common.Product])
+            foreach (var row in Database.Instance().Dic[Common.Product])
             {
                 if (row.name.Contains(name))
                 {
@@ -30,7 +30,7 @@ namespace OOP.dao
 
         public BaseRow searchByName(string name)
         {
-            List<BaseRow> list = Database.Instance().dic[name];
+            List<BaseRow> list = Database.Instance().Dic[Common.Product];
             var o = list.Find(o => o.name.Equals(name));
             return o;
         }

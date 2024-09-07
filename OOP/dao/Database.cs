@@ -21,12 +21,14 @@ namespace OOP.demo
         {
         }
 
-        public Dictionary<string, List<BaseRow>> dic = new Dictionary<string, List<BaseRow>>()
+        private Dictionary<string, List<BaseRow>> dic = new Dictionary<string, List<BaseRow>>()
         {
             { Common.Product, new List<BaseRow>()},
             { Common.Category, new List<BaseRow>()},
             { Common.Accesstion, new List<BaseRow>()}
         };
+
+        public Dictionary<string, List<BaseRow>> Dic { get => dic; private set => dic = value; }
 
         /// <summary>
         /// Delete an object in dictionary

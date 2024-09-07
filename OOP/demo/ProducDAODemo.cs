@@ -24,14 +24,10 @@ namespace OOP.demo
             updateTableTest();
             print();
             Console.WriteLine("Search By Name");
-            printSearchByName(productDAO.searchByName(Common.Product + "2"));
+            Console.WriteLine(productDAO.searchByName(Common.Product + "2").ToString());
+
             Console.WriteLine("Search");
             printSearch(productDAO.search("1"));
-        }
-
-        private static void printSearchByName(BaseRow row)
-        {
-            Console.WriteLine(row.ToString());
         }
 
         private static void printSearch(List<BaseRow> list)

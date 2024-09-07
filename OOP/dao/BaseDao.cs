@@ -17,9 +17,9 @@ namespace OOP.dao
         /// <param name="row"> an object </param>
         
         public void insertTable(string name, BaseRow row) {
-            if (Database.Instance().dic.ContainsKey(name))
+            if (Database.Instance().Dic.ContainsKey(name))
             {
-                Database.Instance().dic[name].Add(row);
+                Database.Instance().Dic[name].Add(row);
             }
         }
 
@@ -30,7 +30,7 @@ namespace OOP.dao
         /// <param name="row"> an object </param>
         public void updateTable(string name, BaseRow row)
         {
-            var o = Database.Instance().dic[name].FirstOrDefault(o => o.id == row.id);
+            var o = Database.Instance().Dic[name].FirstOrDefault(o => o.id == row.id);
             if (o != null)
             {
                 o.name = row.name;
@@ -45,11 +45,11 @@ namespace OOP.dao
         /// <param name="row"> an object </param>
         public void deleteTable(string name, BaseRow row)
         {
-            var o = Database.Instance().dic[name].FindAll(o => o.id == row.id);
-            for (int i = 0; i < Database.Instance().dic[name].Count; i++)
+            var o = Database.Instance().Dic[name].FindAll(o => o.id == row.id);
+            for (int i = 0; i < Database.Instance().Dic[name].Count; i++)
             {
-                if (Database.Instance().dic[name][i].id == row.id)
-                    Database.Instance().dic[name].Remove(Database.Instance().dic[name][i]);
+                if (Database.Instance().Dic[name][i].id == row.id)
+                    Database.Instance().Dic[name].Remove(Database.Instance().Dic[name][i]);
             }
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace OOP.dao
         /// <returns> list object </returns>
         public List<BaseRow> selectTable(string name)
         {
-            return Database.Instance().dic[name];
+            return Database.Instance().Dic[name];
         }
         /// <summary>
         /// Get object by Id
@@ -69,7 +69,7 @@ namespace OOP.dao
         /// <returns> object </returns>
         public BaseRow findByID(string name, BaseRow row)
         {
-            List<BaseRow> list = Database.Instance().dic[name];
+            List<BaseRow> list = Database.Instance().Dic[name];
             var o = list.Find(o => o.id == row.id);
             return o;
         }
