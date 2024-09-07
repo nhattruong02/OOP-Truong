@@ -9,31 +9,8 @@ using System.Xml.Linq;
 
 namespace OOP.dao
 {
-    public class CategoryDAO : BaseDao, IFunction<Category>
+    public class CategoryDAO : BaseDao
     {
-        /// <summary>
-        /// Search table Category by name
-        /// </summary>
-        /// <param name="name"> key of dictionary </param>
-        /// <returns></returns>
-        public List<BaseRow> search(string name)
-        {
-            List<BaseRow> list = new List<BaseRow>();
-            foreach (var row in Database.Instance().Dic[Common.Category])
-            {
-                if (row.name.Contains(name))
-                {
-                    list.Add(row);
-                }
-            }
-            return list;
-        }
 
-        public BaseRow searchByName(string name)
-        {
-            List<BaseRow> list = Database.Instance().Dic[Common.Category];
-            var o = list.Find(o => o.name.Equals(name));
-            return o;
-        }
     }
 }
