@@ -1,4 +1,4 @@
-﻿/*using OOP.dao;
+﻿using OOP.dao;
 using OOP.muck_entity;
 using System;
 using System.Collections.Generic;
@@ -29,12 +29,9 @@ namespace OOP.demo
             printSearch(productDAO.search("1"));
         }
 
-        private static void printSearchByName(List<BaseRow> list)
+        private static void printSearchByName(BaseRow row)
         {
-            foreach (BaseRow row in list)
-            {
-                Console.WriteLine(row.ToString());
-            }
+            Console.WriteLine(row.ToString());
         }
 
         private static void printSearch(List<BaseRow> list)
@@ -71,4 +68,3 @@ namespace OOP.demo
         }
     }
 }
-*/

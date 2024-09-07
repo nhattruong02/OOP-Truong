@@ -28,17 +28,11 @@ namespace OOP.dao
             return list;
         }
 
-        public List<BaseRow> searchByName(string name)
+        public BaseRow searchByName(string name)
         {
-            List<BaseRow> list = new List<BaseRow>();
-            foreach (var row in Database.Instance().dic[Common.Product])
-            {
-                if (row.name.Equals(name))
-                {
-                    list.Add(row);
-                }
-            }
-            return list;
+            List<BaseRow> list = Database.Instance().dic[name];
+            var o = list.Find(o => o.name.Equals(name));
+            return o;
         }
     }
 }

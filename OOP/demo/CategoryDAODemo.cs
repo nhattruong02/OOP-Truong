@@ -1,4 +1,4 @@
-﻿/*using OOP.dao;
+﻿using OOP.dao;
 using OOP.muck_entity;
 using System;
 using System.Collections.Generic;
@@ -25,21 +25,19 @@ namespace OOP.demo
             updateTableTest();
             print();
             Console.WriteLine("Search By Name");
-            printSearchByName(categorytDAO1.searchByName(Common.Category+"2"));
+            printSearchByName(categorytDAO1.searchByName(Common.Category + "2"));
             Console.WriteLine("Search");
             printSearch(categorytDAO1.search("1"));
         }
 
-        private static void printSearchByName(List<BaseRow> list)
+        private static void printSearchByName(BaseRow row)
         {
-            foreach (BaseRow row in list)
-            {
-                Console.WriteLine(row.ToString());
-            }
+            Console.WriteLine(row.ToString());
         }
 
-        private static void printSearch(List<BaseRow> list) {
-            foreach(BaseRow row in list)
+        private static void printSearch(List<BaseRow> list)
+        {
+            foreach (BaseRow row in list)
             {
                 Console.WriteLine(row.ToString());
             }
@@ -71,4 +69,3 @@ namespace OOP.demo
         }
     }
 }
-*/
